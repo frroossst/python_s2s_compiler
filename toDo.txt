@@ -1,0 +1,2 @@
+1. Complete all functional easter eggs
+2. Figure out a way to add interactive easter eggs
