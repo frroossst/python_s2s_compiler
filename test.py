@@ -1,2 +1,7 @@
+print("Test Case")
 print("han shot first")
-print("test case one")
+print("HAN SHOT FIRST")
+print("Han Shot First")
+print("Han shot first")
+print("han shot First")
+print("hAn sHoT FiRsT")

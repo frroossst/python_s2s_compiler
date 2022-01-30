@@ -1,2 +1,7 @@
+print("Test Case")
 print("greedo shot first")
-print("test case one")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
