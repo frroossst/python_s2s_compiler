@@ -1,4 +1,5 @@
 print("Test Case")
+
 print("han shot first")
 print("HAN SHOT FIRST")
 print("Han Shot First")
@@ -9,3 +10,10 @@ test0 = "han shot first"
 print(test0)
 
 print("what is the meaning of life")
+
+print("baker's dozen")
+print("bakers dozen")
+
+print("flip a coin")
+
+print("roll a die")
