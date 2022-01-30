@@ -1,11 +1,12 @@
 import json
 import re
-import string
-from sys import flags
 
 
 
 class method():
+
+    def __init__(self) -> None:
+        pass
 
     @classmethod
     def readSettings(self,type) -> str:
@@ -23,7 +24,7 @@ class method():
         # Reading soruce file contents
         with open(method.readSettings("fileName"),"r") as fobj:
             content = fobj.read()
-            print(content)
+            # print(content)
             return content
 
     @classmethod
@@ -40,7 +41,7 @@ class method():
 class compiler():
 
     source_content = None   
-    comp_content = None
+    comp_content = None # currently not in use; only using source_content
 
     def __init__(self) -> None:
        compiler.source_content = method.readSource()
@@ -49,8 +50,10 @@ class compiler():
   
         E = easterEggs()
         E.han_greedo()
+        E.meaning_of_life()
 
-        method.saveComp(compiler.comp_content)
+        method.saveComp(compiler.source_content)
+
 
 
 class easterEggs():
@@ -61,9 +64,17 @@ class easterEggs():
     def han_greedo(self) -> None:
         pattern = "han shot first"
         repl = "greedo shot first"
-        compiler.comp_content = re.sub(pattern,repl,compiler.source_content,flags=re.IGNORECASE)
+        compiler.source_content = re.sub(pattern,repl,compiler.source_content,flags=re.IGNORECASE)
+
+    def meaning_of_life(self) -> None:
+        pattern0 = "what is the meaning of life"
+        pattern1 = "answer to life the universe and everything"
+        repl = "42"
+        compiler.source_content = re.sub(pattern0,repl,compiler.source_content,flags=re.IGNORECASE)
+        compiler.source_content = re.sub(pattern1,repl,compiler.source_content,flags=re.IGNORECASE)
 
 
 
-C = compiler()
-C.main()
+if __name__ == "__main__":
+    C = compiler()
+    C.main()
