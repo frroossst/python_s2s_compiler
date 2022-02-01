@@ -1,23 +1,20 @@
-"kcus srorrim"
-
 print("Test Case")
 
-print("greedo shot first")
-print("greedo shot first")
-print("greedo shot first")
-print("greedo shot first")
-print("greedo shot first")
-print("greedo shot first")
-test0 = "greedo shot first"
+print("han shot first")
+print("HAN SHOT FIRST")
+print("Han Shot First")
+print("Han shot first")
+print("han shot First")
+print("hAn sHoT FiRsT")
+test0 = "han shot first"
 print(test0)
 
-print("42")
+print("what is the meaning of life")
 
-print("13")
-print("13")
+print("baker's dozen")
+print("bakers dozen")
 
-print("heads")
+print("flip a coin")
 
-print("6")
+print("roll a die")
 
-"I want to look in the mirror"

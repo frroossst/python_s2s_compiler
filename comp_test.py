@@ -1,23 +1,23 @@
-"rorrim eht ni kool ot tnaw I"
+"kcus srorrim"
 
-)"6"(tnirp
+print("Test Case")
 
-)"sdaeh"(tnirp
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+test0 = "greedo shot first"
+print(test0)
 
-)"31"(tnirp
-)"31"(tnirp
+print("42")
 
-)"24"(tnirp
+print("13")
+print("13")
 
-)0tset(tnirp
-"tsrif tohs odeerg" = 0tset
-)"tsrif tohs odeerg"(tnirp
-)"tsrif tohs odeerg"(tnirp
-)"tsrif tohs odeerg"(tnirp
-)"tsrif tohs odeerg"(tnirp
-)"tsrif tohs odeerg"(tnirp
-)"tsrif tohs odeerg"(tnirp
+print("heads")
 
-)"esaC tseT"(tnirp
+print("6")
 
-"mirrors suck"
+"I want to look in the mirror"
