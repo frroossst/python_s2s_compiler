@@ -3,6 +3,8 @@ import random
 import json
 import re
 
+from soupsieve import match
+
 
 
 class method():
@@ -64,7 +66,7 @@ class compiler():
         E.once_in_a_blue_moon()
         E.horns_of_unicorn()
         
-       #  E.look_in_the_mirror()
+        E.look_in_the_mirror()
         E.mirrors_suck()
         method.saveComp(compiler.source_content)
 
@@ -166,26 +168,26 @@ class easterEggs():
         # reverse the whole doc string
         matchStatus = re.findall("I want to look in the mirror",compiler.source_content,flags=re.IGNORECASE)
         if matchStatus != None:
-            compiler.source_content = compiler.source_content[::-1]
-            method.saveComp(compiler.source_content,comp=False) 
-            quit()
+            if matchStatus!= []:
+                compiler.source_content = compiler.source_content[::-1]
+                method.saveComp(compiler.source_content,comp=False) 
+                quit()
         else:
             pass
 
     def mirrors_suck(self) -> None:
         str = "mirrors suck"
         matchStatus = re.findall(str,compiler.source_content)
-        keywords = ["False","await","else","import","pass","None","break","except","in","raise","True","class","finally","is","return","and",
-        "continue","for","lambda","try","as","def","from","nonlocal","while","assert","del","global","not","with","async","elif","if","or",
-        "yield"]
+        keywords = ["print("]
         keywordStatus = False
 
         for i in keywords:
             if i in compiler.source_content:
                 keywordStatus = True
+                print(i)
                 break
 
-        if matchStatus != None and not keywordStatus:
+        if matchStatus != None and matchStatus!=[] and not keywordStatus:
             compiler.source_content = compiler.source_content[::-1] 
             method.saveComp(compiler.source_content,comp=False)
             quit()

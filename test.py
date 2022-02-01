@@ -1,3 +1,5 @@
+"kcus srorrim"
+
 print("Test Case")
 
 print("greedo shot first")
@@ -14,8 +16,8 @@ print("42")
 print("13")
 print("13")
 
-print("tails")
+print("heads")
 
-print("1")
+print("6")
 
-"mirrors suck"
+"I want to look in the mirror"

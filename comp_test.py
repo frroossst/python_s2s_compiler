@@ -1,21 +1,23 @@
-print("Test Case")
+"rorrim eht ni kool ot tnaw I"
 
-print("greedo shot first")
-print("greedo shot first")
-print("greedo shot first")
-print("greedo shot first")
-print("greedo shot first")
-print("greedo shot first")
-test0 = "greedo shot first"
-print(test0)
+)"6"(tnirp
 
-print("42")
+)"sdaeh"(tnirp
 
-print("13")
-print("13")
+)"31"(tnirp
+)"31"(tnirp
 
-print("tails")
+)"24"(tnirp
 
-print("1")
+)0tset(tnirp
+"tsrif tohs odeerg" = 0tset
+)"tsrif tohs odeerg"(tnirp
+)"tsrif tohs odeerg"(tnirp
+)"tsrif tohs odeerg"(tnirp
+)"tsrif tohs odeerg"(tnirp
+)"tsrif tohs odeerg"(tnirp
+)"tsrif tohs odeerg"(tnirp
+
+)"esaC tseT"(tnirp
 
 "mirrors suck"
