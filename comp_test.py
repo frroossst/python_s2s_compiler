@@ -14,6 +14,8 @@ print("42")
 print("13")
 print("13")
 
-print("heads")
+print("tails")
 
-print("6")
+print("1")
+
+"mirrors suck"

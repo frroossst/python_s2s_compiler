@@ -1,2 +1,7 @@
 1. Complete all functional easter eggs
+https://cognitiveseo.com/blog/13616/google-easter-eggs/#1
+     -0 => "did you pass high school math?"
+     !% => not divisible operator
+        rather than x % y != 0 you do:
+            x !% y 
 2. Figure out a way to add interactive easter eggs

@@ -1,19 +1,21 @@
 print("Test Case")
 
-print("han shot first")
-print("HAN SHOT FIRST")
-print("Han Shot First")
-print("Han shot first")
-print("han shot First")
-print("hAn sHoT FiRsT")
-test0 = "han shot first"
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+print("greedo shot first")
+test0 = "greedo shot first"
 print(test0)
 
-print("what is the meaning of life")
+print("42")
 
-print("baker's dozen")
-print("bakers dozen")
+print("13")
+print("13")
 
-print("flip a coin")
+print("tails")
 
-print("roll a die")
+print("1")
+
+"mirrors suck"

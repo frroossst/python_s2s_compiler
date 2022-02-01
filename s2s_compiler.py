@@ -1,3 +1,4 @@
+from fcntl import F_SEAL_SEAL
 import random
 import json
 import re
@@ -29,10 +30,12 @@ class method():
             return content
 
     @classmethod
-    def saveComp(self,result) -> None:
-        # Writing to compiled file
-        new_file = "comp_" + method.readSettings("fileName")
-    
+    def saveComp(self,result,comp=True) -> None:
+        # Writing to compiled fileA
+        if comp:
+            new_file = "comp_" + method.readSettings("fileName")
+        else:
+            new_file = method.readSettings("fileName")
         # Writing contents to compiled file
         with open(new_file,"w") as fobj:
            fobj.write(result)
@@ -50,6 +53,7 @@ class compiler():
     def main(self):
   
         E = easterEggs()
+        
         E.han_greedo()
         E.meaning_of_life()
         E.bakers_dozen()
@@ -59,7 +63,9 @@ class compiler():
         E.error418()
         E.once_in_a_blue_moon()
         E.horns_of_unicorn()
-
+        
+       #  E.look_in_the_mirror()
+        E.mirrors_suck()
         method.saveComp(compiler.source_content)
 
 
@@ -122,23 +128,34 @@ class easterEggs():
         compiler.source_content = re.sub(pattern,repl,compiler.source_content,flags=re.IGNORECASE)
 
     def loneliest_number(self) -> None:
-        pass
+        pattern = "what is the loneliest number"
+        repl = "1"
+        compiler.source_content = re.sub(pattern,repl,compiler.source_content,flags=re.IGNORECASE)
 
     def anagram(self) -> None:
-        pass
+        pattern = "anagram"
+        repl = "nag a ram"
+        compiler.source_content = re.sub(pattern,repl,compiler.source_content,flags=re.IGNORECASE)
 
     def recursion(self) -> None:
         # randomly capitalize letters
-        pass
-
-    def pirate_language(self) -> None:
-        pass
+        pattern = "recursion"
+        capital = random.sample(range(0,len(pattern)),4)
+        repl = ""
+        for index, i in enumerate(pattern):
+            if index in capital:
+                repl += i.upper()
+            else:
+                repl += i
+        compiler.source_content = re.sub(pattern,repl,compiler.source_content,flags=re.IGNORECASE)
 
     def hacker_language(self) -> None:
         pass
 
     def loch_ness_monster(self) -> None:
-        pass
+        pattern = "where is the loch ness monster"
+        repl = "you can find Nessie at 57.323667970003704, -4.424191149125835 \n Also he is not a monster!"
+        compiler.source_content = re.sub(pattern,repl,compiler.source_content,flags=re.IGNORECASE)
 
     def funniest_joke(self) -> None:
         pattern = "Wenn ist das Nunstück git und Slotermeyer? Ja! Beiherhund das Oder die Flipperwaldt gersput! to English"
@@ -147,6 +164,34 @@ class easterEggs():
 
     def look_in_the_mirror(self) -> None:
         # reverse the whole doc string
+        matchStatus = re.findall("I want to look in the mirror",compiler.source_content,flags=re.IGNORECASE)
+        if matchStatus != None:
+            compiler.source_content = compiler.source_content[::-1]
+            method.saveComp(compiler.source_content,comp=False) 
+            quit()
+        else:
+            pass
+
+    def mirrors_suck(self) -> None:
+        str = "mirrors suck"
+        matchStatus = re.findall(str,compiler.source_content)
+        keywords = ["False","await","else","import","pass","None","break","except","in","raise","True","class","finally","is","return","and",
+        "continue","for","lambda","try","as","def","from","nonlocal","while","assert","del","global","not","with","async","elif","if","or",
+        "yield"]
+        keywordStatus = False
+
+        for i in keywords:
+            if i in compiler.source_content:
+                keywordStatus = True
+                break
+
+        if matchStatus != None and not keywordStatus:
+            compiler.source_content = compiler.source_content[::-1] 
+            method.saveComp(compiler.source_content,comp=False)
+            quit()
+
+    def do_a_barrel_roll(self) -> None:
+        # write a function to a separate file and then replace the source print statement with an import statement  
         pass
 
 
