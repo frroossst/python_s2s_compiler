@@ -1,9 +1,6 @@
-from fcntl import F_SEAL_SEAL
 import random
 import json
 import re
-
-from soupsieve import match
 
 
 
@@ -65,9 +62,10 @@ class compiler():
         E.error418()
         E.once_in_a_blue_moon()
         E.horns_of_unicorn()
-        
         E.look_in_the_mirror()
         E.mirrors_suck()
+        E.do_a_barrel_roll()
+
         method.saveComp(compiler.source_content)
 
 
@@ -201,14 +199,34 @@ class easterEggs():
     def do_a_barrel_roll(self) -> None:
         # write a function to a separate file and then replace the source print statement with an import statement  
         funcDef = """
-        def barrelRoll():
-            tag = "I suck at ascii art so here's the best I can do"
-            anim = ["|", "\\", "-", "/", "-", "\\"]
-            for i in anim:
-                print(i,end="\r")
-        barrelRoll()
+def barrelRoll():
+    import time
+    tag = "I suck at ascii art so here's the best I can do"
+    anim = [" |", " /", " -", " \\ "] * 10
+    print(tag)
+    for i in anim:
+        time.sleep(0.25)
+        print("Look at me do a barrel roll :",i,end="\\r")
+barrelRoll()
         """
-        pass
+        pattern = '"do a barrel roll"'
+        # compiler.source_content = re.sub(pattern,funcDef,compiler.source_content,flags=re.IGNORECASE)
+
+        # ! Replace comp_test with fileName
+        # TODO : Add a different method to change the test rather than comp file
+
+        with open("comp_test.py","r") as fobj:
+            content = fobj.readlines()
+
+        for index, i  in enumerate(content):
+            if i == pattern:
+                content[index] = funcDef
+                break
+
+        with open("comp_test.py","w") as fobj:
+            fobj.writelines(content)
+
+
 
 
 

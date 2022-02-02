@@ -1,5 +1,3 @@
-"kcus srorrim"
-
 print("Test Case")
 
 print("greedo shot first")
@@ -16,8 +14,8 @@ print("42")
 print("13")
 print("13")
 
-print("heads")
+print("tails")
 
-print("6")
+print("1")
 
-"I want to look in the mirror"
+"do a barrel roll"
