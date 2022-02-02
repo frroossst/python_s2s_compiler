@@ -170,8 +170,10 @@ class easterEggs():
         if matchStatus != None:
             if matchStatus!= []:
                 compiler.source_content = compiler.source_content[::-1]
-                method.saveComp(compiler.source_content,comp=False) 
-                method.saveComp(compiler.source_content)
+                if method.readSettings("changeSource"):
+                    method.saveComp(compiler.source_content,comp=False) 
+                else:
+                    method.saveComp(compiler.source_content)
                 quit()
         else:
             pass
@@ -190,12 +192,22 @@ class easterEggs():
 
         if matchStatus != None and matchStatus!=[] and not keywordStatus:
             compiler.source_content = compiler.source_content[::-1] 
-            method.saveComp(compiler.source_content,comp=False)
-            method.saveComp(compiler.source_content)
+            if method.readSettings("changeSource"):
+                method.saveComp(compiler.source_content,comp=False)
+            else:
+                method.saveComp(compiler.source_content)
             quit()
 
     def do_a_barrel_roll(self) -> None:
         # write a function to a separate file and then replace the source print statement with an import statement  
+        funcDef = """
+        def barrelRoll():
+            tag = "I suck at ascii art so here's the best I can do"
+            anim = ["|", "\\", "-", "/", "-", "\\"]
+            for i in anim:
+                print(i,end="\r")
+        barrelRoll()
+        """
         pass
 
 

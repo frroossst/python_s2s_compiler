@@ -4,4 +4,5 @@ https://cognitiveseo.com/blog/13616/google-easter-eggs/#1
      !% => not divisible operator
         rather than x % y != 0 you do:
             x !% y 
+    number_magic => converts spelled out number to integer numbers
 2. Figure out a way to add interactive easter eggs
