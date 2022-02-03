@@ -185,7 +185,6 @@ class easterEggs():
         for i in keywords:
             if i in compiler.source_content:
                 keywordStatus = True
-                print(i)
                 break
 
         if matchStatus != None and matchStatus!=[] and not keywordStatus:
@@ -207,24 +206,14 @@ def barrelRoll():
     for i in anim:
         time.sleep(0.25)
         print("Look at me do a barrel roll :",i,end="\\r")
-barrelRoll()
         """
+
+        repl = """import barrelRoll \nbarrelRoll.barrelRoll()"""
         pattern = '"do a barrel roll"'
-        # compiler.source_content = re.sub(pattern,funcDef,compiler.source_content,flags=re.IGNORECASE)
+        compiler.source_content = re.sub(pattern,repl,compiler.source_content,flags=re.IGNORECASE)
 
-        # ! Replace comp_test with fileName
-        # TODO : Add a different method to change the test rather than comp file
-
-        with open("comp_test.py","r") as fobj:
-            content = fobj.readlines()
-
-        for index, i  in enumerate(content):
-            if i == pattern:
-                content[index] = funcDef
-                break
-
-        with open("comp_test.py","w") as fobj:
-            fobj.writelines(content)
+        with open("barrelRoll.py","w") as fobj:
+            fobj.writelines(funcDef)
 
 
 

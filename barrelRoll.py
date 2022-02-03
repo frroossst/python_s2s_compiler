@@ -7,4 +7,4 @@ def barrelRoll():
     for i in anim:
         time.sleep(0.25)
         print("Look at me do a barrel roll :",i,end="\r")
-barrelRoll()
+        
