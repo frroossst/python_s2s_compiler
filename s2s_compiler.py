@@ -18,19 +18,41 @@ class method():
 
         if type == "fileName":
             fileName = settings["fileName"]
-            return fileName
+            if fileName == "":
+                fileName = settings["filePath"]
+        
+        return fileName
 
     @classmethod
     def readSource(self) -> str:
         # Reading soruce file contents
         with open(method.readSettings("fileName"),"r") as fobj:
             content = fobj.read()
-            # print(content)
             return content
 
     @classmethod
-    def saveComp(self,result,comp=True) -> None:
-        # Writing to compiled fileA
+    def saveComp(self) -> None:
+        # Writing to compiled file
+        
+        with open("settings.json","r") as fobj:
+            settings = json.load(fobj)
+
+        if settings["changeSource"]: # Source is changed itself 
+            with open(method.readSettings("fileName"),"w") as fobj:
+                fobj.write(compiler.source_content)
+                fobj.close()
+        elif not (settings["changeSource"]): # A new comp_ file is created``
+            filePath = method.readSettings("fileName")
+            pos = filePath.rfind("/") + 1
+            fileName = filePath[pos:] 
+            new_file = "comp_" + fileName
+            
+            with open(new_file,"w") as fobj:
+                fobj.write(compiler.source_content)
+                fobj.close()
+
+
+        """        
         if comp:
             new_file = "comp_" + method.readSettings("fileName")
         else:
@@ -38,7 +60,7 @@ class method():
         # Writing contents to compiled file
         with open(new_file,"w") as fobj:
            fobj.write(result)
-
+        """
 
 
 class compiler():
@@ -66,7 +88,7 @@ class compiler():
         E.mirrors_suck()
         E.do_a_barrel_roll()
 
-        method.saveComp(compiler.source_content)
+        method.saveComp()
 
 
 
@@ -169,9 +191,9 @@ class easterEggs():
             if matchStatus!= []:
                 compiler.source_content = compiler.source_content[::-1]
                 if method.readSettings("changeSource"):
-                    method.saveComp(compiler.source_content,comp=False) 
+                    method.saveComp() 
                 else:
-                    method.saveComp(compiler.source_content)
+                    method.saveComp()
                 quit()
         else:
             pass
@@ -190,9 +212,9 @@ class easterEggs():
         if matchStatus != None and matchStatus!=[] and not keywordStatus:
             compiler.source_content = compiler.source_content[::-1] 
             if method.readSettings("changeSource"):
-                method.saveComp(compiler.source_content,comp=False)
+                method.saveComp()
             else:
-                method.saveComp(compiler.source_content)
+                method.saveComp()
             quit()
 
     def do_a_barrel_roll(self) -> None:
@@ -214,6 +236,7 @@ def barrelRoll():
 
         with open("barrelRoll.py","w") as fobj:
             fobj.writelines(funcDef)
+
 
 
 
