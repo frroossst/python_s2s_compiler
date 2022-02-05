@@ -51,16 +51,14 @@ class method():
                 fobj.write(compiler.source_content)
                 fobj.close()
 
+    @classmethod 
+    def cleanup(self):
+        import os
+        filesCreated = ["barrelRoll.py"]
+        
+        for i in filesCreated:
+            os.remove(i)
 
-        """        
-        if comp:
-            new_file = "comp_" + method.readSettings("fileName")
-        else:
-            new_file = method.readSettings("fileName")
-        # Writing contents to compiled file
-        with open(new_file,"w") as fobj:
-           fobj.write(result)
-        """
 
 
 class compiler():
@@ -69,7 +67,8 @@ class compiler():
     comp_content = None # currently not in use; only using source_content
 
     def __init__(self) -> None:
-       compiler.source_content = method.readSource()
+        method.cleanup()
+        compiler.source_content = method.readSource()
 
     def main(self):
   
@@ -237,7 +236,10 @@ def barrelRoll():
         with open("barrelRoll.py","w") as fobj:
             fobj.writelines(funcDef)
 
+class functional():
 
+    def __init__(self) -> None:
+        pass
 
 
 
