@@ -236,10 +236,22 @@ def barrelRoll():
         with open("barrelRoll.py","w") as fobj:
             fobj.writelines(funcDef)
 
+    def negative_zero(self) -> None:
+        pass
+
+
+
+
+
 class functional():
 
     def __init__(self) -> None:
         pass
+
+    def not_remainder(self) -> None:
+        pass
+
+
 
 
 

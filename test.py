@@ -19,3 +19,5 @@ print("flip a coin")
 print("roll a die")
 
 "do a barrel roll"
+
+a = -0
