@@ -16,7 +16,7 @@ print("13")
 
 print("heads")
 
-print("1")
+print("6")
 
 import barrelRoll 
 barrelRoll.barrelRoll()

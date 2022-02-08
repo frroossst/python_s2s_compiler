@@ -1,3 +1,4 @@
+import pickle
 import random
 import json
 import re
@@ -86,6 +87,10 @@ class compiler():
         E.look_in_the_mirror()
         E.mirrors_suck()
         E.do_a_barrel_roll()
+
+        F = functional()
+        
+        F.count_vowels()
 
         method.saveComp()
 
@@ -251,6 +256,18 @@ class functional():
     def not_remainder(self) -> None:
         pass
 
+    def count_vowels(self) -> None:
+
+        vowels = ["a","e","i","o","u"]
+        hash_vowels = {"a" : 0, "e" : 0, "i" : 0, "o" : 0, "u" :0}
+
+        for i in compiler.source_content:
+            if i in vowels:
+                hash_vowels[i] += 1
+
+        with open("vowelCount.json","w") as fobj:
+            json.dump(hash_vowels,fobj)
+            fobj.close()
 
 
 
