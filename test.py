@@ -21,3 +21,7 @@ print("roll a die")
 "do a barrel roll"
 
 a = -0
+
+"color"
+"behavior"
+b = "airplane"

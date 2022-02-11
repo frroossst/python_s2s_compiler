@@ -87,6 +87,9 @@ class compiler():
         E.look_in_the_mirror()
         E.mirrors_suck()
         E.do_a_barrel_roll()
+        E.innit()
+
+        method.saveComp()
 
         F = functional()
         
@@ -97,6 +100,11 @@ class compiler():
 
 
 class easterEggs():
+
+    american_british_dict = {"airplane" : "aeroplane","cilantro" : "corriander", "eggplant" : "aubergine", "color" : "colour", "flavor" : "flavour",
+    "humor" : "humour", "labor" : "labour", "neighbor" : "neighbour", "apologize" : "apologise", "organize" : "organise", "recognize" : "recognise",
+    "behavior" : "behaviour", "analyze" : "analyse", "paralyze" : "paralyse", "defense" : "defence", "license" : "licence", "offense" : "offence",
+    "analog" : "anologue", "dialog" : "dialogue", "mold" : "mould", "meter" : "metre", "fiber" : "fibre", "tire" : "tyre"}
 
     def __init__(self) -> None:
         pass
@@ -242,6 +250,17 @@ def barrelRoll():
             fobj.writelines(funcDef)
 
     def negative_zero(self) -> None:
+        pass
+
+    def innit(self) -> None:
+        # american to british english
+        for key, value in easterEggs.american_british_dict.items():
+            compiler.source_content = re.sub(value,key,compiler.source_content,flags=re.IGNORECASE)
+
+
+
+    def yankee(self) -> None:
+        # british to american englilsh
         pass
 
 
