@@ -60,6 +60,18 @@ class method():
         for i in filesCreated:
             os.remove(i)
 
+    @classmethod
+    def cleanup_specialCharacters(self,str) -> str:
+        specialCharacters = [",","!","?","<",">"]
+        returnStr = ""
+
+        for i in str:
+            if i not in specialCharacters:
+                returnStr += i
+        
+        return returnStr
+
+
 
 
 class compiler():
@@ -92,7 +104,7 @@ class compiler():
         method.saveComp()
 
         F = functional()
-        
+        F.not_remainder() 
         F.count_vowels()
 
         method.saveComp()
@@ -273,7 +285,25 @@ class functional():
         pass
 
     def not_remainder(self) -> None:
-        pass
+        """ !% => not remainder
+        Syntax => "a !% b,c;" translates to a % b == c
+        """
+        # TODO : Work on translation into python statement and storing the output to appropriate varibale on the comp_ file
+        # ; added to make end of statement easier to interpret
+        # Figure out a way to get the number before !% symbol
+            # Idea 1 => find index of symbol, check a space or two before to get a number doing that until the number ends
+            # Idea 2 => make !% into a function => !%(a,b,c=0)
+    
+        symbol = "!%"
+        lexical_split = compiler.source_content.split("\n")
+        statement_build = ""
+        if symbol not in lexical_split:
+            quit()
+        else:
+            for index, element in enumerate(lexical_split):
+                if element == symbol:
+                    statement_build = lexical_split[index -1] + lexical_split[index + 1] + lexical_split[index + 2]
+                    statement_build = method.cleanup_specialCharacters(statement_build) 
 
     def count_vowels(self) -> None:
 

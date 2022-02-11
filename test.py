@@ -25,3 +25,5 @@ a = -0
 "color"
 "behavior"
 b = "airplane"
+
+100 !% 2, 0
