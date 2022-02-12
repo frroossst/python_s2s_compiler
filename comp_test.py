@@ -14,9 +14,9 @@ print("42")
 print("13")
 print("13")
 
-print("heads")
+print("tails")
 
-print("5")
+print("2")
 
 import barrelRoll 
 barrelRoll.barrelRoll()
@@ -27,6 +27,6 @@ a = -0
 "behavior"
 b = "airplane"
 
-10023 !% 2, 0
+10023!%2,0;
 
 print()

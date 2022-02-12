@@ -26,6 +26,6 @@ a = -0
 "behavior"
 b = "airplane"
 
-10023 !% 2, 0
+10023!%2,0;
 
 print()

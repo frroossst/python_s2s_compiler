@@ -1,4 +1,6 @@
 from itertools import count
+from math import remainder
+from ntpath import join
 import pickle
 import random
 import json
@@ -292,55 +294,77 @@ class functional():
 
     def not_remainder(self) -> None:
         """ !% => not remainder
-        Syntax => "a !% b,c;" translates to a % b == c
+        Syntax => "a !% b,c" translates to a % b == c
         """
         # TODO : Work on translation into python statement and storing the output to appropriate varibale on the comp_ file
         # TODO : Make it also work with variable names and not only numbers
-        # ! Only works with numbers as of now
+        # ! Only works with numbers as of now, as it is only a partial evaluator and not a full interpreter
         # ; added to make end of statement easier to interpret
         # Figure out a way to get the number before !% symbol
             # Idea 1 => find index of symbol, check a space or two before to get a number doing that until the number ends
             # Idea 2 => make !% into a function => !%(a,b,c=0)
-    
+            # Idea 2 => Use ; to figure out the end of the expression
 
         symbol = "!%"
+        expression0 = []
+        expression1 = []
+        # Finding all instances of symbol
 
-        """
-        lexical_split = compiler.source_content.split("\n")
-        statement_build = ""
-        if symbol not in lexical_split:
-            quit()
-        else:
-            for index, element in enumerate(lexical_split):
-                if element == symbol:
-                    statement_build = lexical_split[index -1] + lexical_split[index + 1] + lexical_split[index + 2]
-                    statement_build = method.cleanup_specialCharacters(statement_build) """
 
-        buffer = [] # Stores upto 10 values before finding
-        Args = 0
-        Nlen = 25
-
-        for i in range(0,len(compiler.source_content)):
-            if len(buffer) > Nlen:
-                buffer.pop(0)
-            try:
-                curr_str = compiler.source_content[i] + compiler.source_content[i+1]
-                if curr_str == symbol:
-                    # Work backwards and figure out all the numbers in the expression
-                    # Forward Loop
-                    count = i
-                    while True:
-                        symbol = "\n"
-                        if compiler.source_content[count] == symbol:
-
-                    # Backward Loop
-                    while True:
-
-            except IndexError:
+        # Finding expressions
+        for i in range(0,len(compiler.source_content)-1):
+            curr_pointer = compiler.source_content[i] + compiler.source_content[i+1]
+            if curr_pointer == symbol:
+                index = i
                 break
-        print(buffer)
+
+        # Loop backwards
+        curr_index_B = index 
+        while True:
+            if compiler.source_content[curr_index_B] != "\n":
+                expression0.append(compiler.source_content[curr_index_B])
+                curr_index_B -= 1
+            else:
+                expression0.reverse()
+                break
+        
+        # Loop forwards
+        curr_index_F = index
+        while True:
+            if compiler.source_content[curr_index_F] != "\n":
+                expression1.append(compiler.source_content[curr_index_F])
+                curr_index_F += 1
+            else:
+                break
+
+        expression = expression0
+        expression.pop()
+        expression.extend(expression1)
+        expressionStr = "".join(expression)
+
+        dividend = None
+        divisor = None
+        remainder = None
+        curr = ""
+
+        for i in expressionStr:
+            if i.isdigit():
+                curr += i
+            else:
+                try:
+                    if dividend == None:
+                        dividend = int(curr)
+                    elif divisor == None:
+                        divisor = int(curr)
+                    elif remainder == None:
+                        remainder = int(curr)
+                except:
+                    pass
+                curr = ""
+                
 
 
+        print(f"{dividend} !% {divisor}, {remainder}")
 
 
 
