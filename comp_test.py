@@ -27,6 +27,8 @@ a = -0
 "behavior"
 b = "airplane"
 
-100!%2,0;
+True
+
+False
 
 print()

@@ -295,9 +295,9 @@ class functional():
 
     def not_remainder(self) -> None:
 
-        isSourceChanged = method.readSettings("changeSource")
-        if isSourceChanged == False:
-            raise SyntaxError("not_remainder method can only be run in source change settings")
+#        isSourceChanged = method.readSettings("changeSource")
+#        if isSourceChanged == False:
+#            raise SyntaxError("not_remainder method can only be run in source change settings")
         """ !% => not remainder
         Syntax => "a !% b,c" translates to a % b == c
         """
@@ -311,67 +311,70 @@ class functional():
             # Idea 2 => make !% into a function => !%(a,b,c=0)
             # Idea 2 => Use ; to figure out the end of the expression
 
-        symbol = "!%"
-        expression0 = []
-        expression1 = []
-
-        # Finding expressions
-        for i in range(0,len(compiler.source_content)-1):
-            curr_pointer = compiler.source_content[i] + compiler.source_content[i+1]
-            if curr_pointer == symbol:
-                index = i
-                break
-
-        # Loop backwards
-        curr_index_B = index 
         while True:
-            if compiler.source_content[curr_index_B] != "\n":
-                expression0.append(compiler.source_content[curr_index_B])
-                curr_index_B -= 1
-            else:
-                expression0.reverse()
+            symbol = "!%"
+            expression0 = []
+            expression1 = []
+            
+            if symbol not in compiler.source_content:
                 break
-        
-        # Loop forwards
-        curr_index_F = index
-        while True:
-            if compiler.source_content[curr_index_F] != "\n":
-                expression1.append(compiler.source_content[curr_index_F])
-                curr_index_F += 1
+            # Finding expressions
+            for i in range(0,len(compiler.source_content)-1):
+                curr_pointer = compiler.source_content[i] + compiler.source_content[i+1]
+                if curr_pointer == symbol:
+                    index = i
+                    break
+
+            # Loop backwards
+            curr_index_B = index 
+            while True:
+                if compiler.source_content[curr_index_B] != "\n":
+                    expression0.append(compiler.source_content[curr_index_B])
+                    curr_index_B -= 1
+                else:
+                    expression0.reverse()
+                    break
+            
+            # Loop forwards
+            curr_index_F = index
+            while True:
+                if compiler.source_content[curr_index_F] != "\n":
+                    expression1.append(compiler.source_content[curr_index_F])
+                    curr_index_F += 1
+                else:
+                    break
+
+            expression = expression0
+            expression.pop()
+            expression.extend(expression1)
+            expressionStr = "".join(expression)
+
+            dividend = None
+            divisor = None
+            remainder = None
+            curr = ""
+
+            for i in expressionStr:
+                if i.isdigit():
+                    curr += i
+                else:
+                    try:
+                        if dividend == None:
+                            dividend = int(curr)
+                        elif divisor == None:
+                            divisor = int(curr)
+                        elif remainder == None:
+                            remainder = int(curr)
+                    except:
+                        pass
+                    curr = ""
+                    
+            if dividend % divisor != remainder:
+                evaluated = True
             else:
-                break
+                evaluated = False
 
-        expression = expression0
-        expression.pop()
-        expression.extend(expression1)
-        expressionStr = "".join(expression)
-
-        dividend = None
-        divisor = None
-        remainder = None
-        curr = ""
-
-        for i in expressionStr:
-            if i.isdigit():
-                curr += i
-            else:
-                try:
-                    if dividend == None:
-                        dividend = int(curr)
-                    elif divisor == None:
-                        divisor = int(curr)
-                    elif remainder == None:
-                        remainder = int(curr)
-                except:
-                    pass
-                curr = ""
-                
-        if dividend % divisor != remainder:
-            evaluated = True
-        else:
-            evaluated = False
-
-        compiler.source_content = re.sub(expressionStr,str(evaluated),compiler.source_content,flags=re.IGNORECASE)
+            compiler.source_content = re.sub(expressionStr,str(evaluated),compiler.source_content,flags=re.IGNORECASE)
 
 
 
