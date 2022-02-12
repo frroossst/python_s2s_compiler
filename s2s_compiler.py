@@ -24,9 +24,10 @@ class method():
         if type == "fileName":
             fileName = settings["fileName"]
             if fileName == "":
-                fileName = settings["filePath"]
-        
-        return fileName
+                fileName = settings["filePath"]        
+            return fileName
+        elif type == "changeSource":
+            return settings["changeSource"]
 
     @classmethod
     def readSource(self) -> str:
@@ -293,12 +294,17 @@ class functional():
         pass
 
     def not_remainder(self) -> None:
+
+        isSourceChanged = method.readSettings("changeSource")
+        if isSourceChanged == False:
+            raise SyntaxError("not_remainder method can only be run in source change settings")
         """ !% => not remainder
         Syntax => "a !% b,c" translates to a % b == c
         """
         # TODO : Work on translation into python statement and storing the output to appropriate varibale on the comp_ file
         # TODO : Make it also work with variable names and not only numbers
         # ! Only works with numbers as of now, as it is only a partial evaluator and not a full interpreter
+        # ! Only works for the first instance of the expression
         # ; added to make end of statement easier to interpret
         # Figure out a way to get the number before !% symbol
             # Idea 1 => find index of symbol, check a space or two before to get a number doing that until the number ends
@@ -308,8 +314,6 @@ class functional():
         symbol = "!%"
         expression0 = []
         expression1 = []
-        # Finding all instances of symbol
-
 
         # Finding expressions
         for i in range(0,len(compiler.source_content)-1):
@@ -362,9 +366,12 @@ class functional():
                     pass
                 curr = ""
                 
+        if dividend % divisor != remainder:
+            evaluated = True
+        else:
+            evaluated = False
 
-
-        print(f"{dividend} !% {divisor}, {remainder}")
+        compiler.source_content = re.sub(expressionStr,str(evaluated),compiler.source_content,flags=re.IGNORECASE)
 
 
 
