@@ -11,3 +11,6 @@
     bruteSort => sort a list with numbers and strings
 
 2. Figure out a way to add interactive easter eggs
+
+3. Impliment AST
+https://docs.python.org/3/library/ast.html

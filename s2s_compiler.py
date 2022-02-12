@@ -2,6 +2,7 @@ import pickle
 import random
 import json
 import re
+from symtable import Symbol
 
 
 
@@ -56,9 +57,11 @@ class method():
     def cleanup(self):
         import os
         filesCreated = ["barrelRoll.py"]
-        
-        for i in filesCreated:
-            os.remove(i)
+        try: 
+            for i in filesCreated:
+                os.remove(i)
+        except:
+            pass
 
     @classmethod
     def cleanup_specialCharacters(self,str) -> str:
@@ -266,8 +269,10 @@ def barrelRoll():
 
     def innit(self) -> None:
         # american to british english
+        # ! Does not work 
         for key, value in easterEggs.american_british_dict.items():
             compiler.source_content = re.sub(value,key,compiler.source_content,flags=re.IGNORECASE)
+            method.saveComp()
 
 
 
@@ -289,12 +294,17 @@ class functional():
         Syntax => "a !% b,c;" translates to a % b == c
         """
         # TODO : Work on translation into python statement and storing the output to appropriate varibale on the comp_ file
+        # TODO : Make it also work with variable names and not only numbers
+        # ! Only works with numbers as of now
         # ; added to make end of statement easier to interpret
         # Figure out a way to get the number before !% symbol
             # Idea 1 => find index of symbol, check a space or two before to get a number doing that until the number ends
             # Idea 2 => make !% into a function => !%(a,b,c=0)
     
+
         symbol = "!%"
+
+        """
         lexical_split = compiler.source_content.split("\n")
         statement_build = ""
         if symbol not in lexical_split:
@@ -303,7 +313,34 @@ class functional():
             for index, element in enumerate(lexical_split):
                 if element == symbol:
                     statement_build = lexical_split[index -1] + lexical_split[index + 1] + lexical_split[index + 2]
-                    statement_build = method.cleanup_specialCharacters(statement_build) 
+                    statement_build = method.cleanup_specialCharacters(statement_build) """
+
+        buffer10 = [] # Stores upto 10 values before finding
+        Args = 0
+
+        for i in range(0,len(compiler.source_content)):
+            if len(buffer10) > 10:
+                buffer10.pop(0)
+            try:
+                curr_str = compiler.source_content[i] + compiler.source_content[i+1]
+                buffer10.append(compiler.source_content[i])
+                if curr_str == symbol:
+                    # Work backwards and figure out all the numbers in the expression
+                    count = i
+                    while True:
+                        if Args == 2:
+                            break
+                        if compiler.source_content[count].isdigit():
+                            Args += 1
+                        count += 1
+            except IndexError:
+                break
+        print(buffer10)
+
+
+
+
+
 
     def count_vowels(self) -> None:
 
