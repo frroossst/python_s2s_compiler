@@ -1,3 +1,4 @@
+from itertools import count
 import pickle
 import random
 import json
@@ -315,27 +316,29 @@ class functional():
                     statement_build = lexical_split[index -1] + lexical_split[index + 1] + lexical_split[index + 2]
                     statement_build = method.cleanup_specialCharacters(statement_build) """
 
-        buffer10 = [] # Stores upto 10 values before finding
+        buffer = [] # Stores upto 10 values before finding
         Args = 0
+        Nlen = 25
 
         for i in range(0,len(compiler.source_content)):
-            if len(buffer10) > 10:
-                buffer10.pop(0)
+            if len(buffer) > Nlen:
+                buffer.pop(0)
             try:
                 curr_str = compiler.source_content[i] + compiler.source_content[i+1]
-                buffer10.append(compiler.source_content[i])
                 if curr_str == symbol:
                     # Work backwards and figure out all the numbers in the expression
+                    # Forward Loop
                     count = i
                     while True:
-                        if Args == 2:
-                            break
-                        if compiler.source_content[count].isdigit():
-                            Args += 1
-                        count += 1
+                        symbol = "\n"
+                        if compiler.source_content[count] == symbol:
+
+                    # Backward Loop
+                    while True:
+
             except IndexError:
                 break
-        print(buffer10)
+        print(buffer)
 
 
 
