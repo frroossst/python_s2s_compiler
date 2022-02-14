@@ -1,3 +1,4 @@
+from doctest import BLANKLINE_MARKER
 from itertools import count
 from math import remainder
 from ntpath import join
@@ -295,11 +296,8 @@ class functional():
 
     def not_remainder(self) -> None:
 
-#        isSourceChanged = method.readSettings("changeSource")
-#        if isSourceChanged == False:
-#            raise SyntaxError("not_remainder method can only be run in source change settings")
         """ !% => not remainder
-        Syntax => "a !% b,c" translates to a % b == c
+        Syntax => "a !% b,c;" translates to a % b == c
         """
         # TODO : Work on translation into python statement and storing the output to appropriate varibale on the comp_ file
         # TODO : Make it also work with variable names and not only numbers
@@ -310,71 +308,87 @@ class functional():
             # Idea 1 => find index of symbol, check a space or two before to get a number doing that until the number ends
             # Idea 2 => make !% into a function => !%(a,b,c=0)
             # Idea 2 => Use ; to figure out the end of the expression
-
-        while True:
-            symbol = "!%"
-            expression0 = []
-            expression1 = []
-            
-            if symbol not in compiler.source_content:
-                break
-            # Finding expressions
-            for i in range(0,len(compiler.source_content)-1):
-                curr_pointer = compiler.source_content[i] + compiler.source_content[i+1]
-                if curr_pointer == symbol:
-                    index = i
-                    break
-
-            # Loop backwards
-            curr_index_B = index 
+        loopTotal = compiler.source_content.count("!%")
+        loopCount = 0
+        try:
             while True:
-                if compiler.source_content[curr_index_B] != "\n":
-                    expression0.append(compiler.source_content[curr_index_B])
-                    curr_index_B -= 1
-                else:
-                    expression0.reverse()
+                if loopCount > loopTotal:
                     break
-            
-            # Loop forwards
-            curr_index_F = index
-            while True:
-                if compiler.source_content[curr_index_F] != "\n":
-                    expression1.append(compiler.source_content[curr_index_F])
-                    curr_index_F += 1
-                else:
+                loopCount += 1
+                symbol = "!%"
+                expression0 = []
+                expression1 = []
+
+                if symbol not in compiler.source_content:
                     break
+                # Finding expressions
+                lineCount = 0
+                for i in range(0,len(compiler.source_content)-1):
+                    curr_pointer = compiler.source_content[i] + compiler.source_content[i+1]
+                    if compiler.source_content[i] == "\n":
+                        lineCount += 1
+                    if curr_pointer == symbol:
+                        index = i
+                        break
 
-            expression = expression0
-            expression.pop()
-            expression.extend(expression1)
-            expressionStr = "".join(expression)
-
-            dividend = None
-            divisor = None
-            remainder = None
-            curr = ""
-
-            for i in expressionStr:
-                if i.isdigit():
-                    curr += i
-                else:
-                    try:
-                        if dividend == None:
-                            dividend = int(curr)
-                        elif divisor == None:
-                            divisor = int(curr)
-                        elif remainder == None:
-                            remainder = int(curr)
-                    except:
-                        pass
-                    curr = ""
+                # Loop backwards
+                curr_index_B = index 
+                while True:
+                    if compiler.source_content[curr_index_B] != "\n":
+                        expression0.append(compiler.source_content[curr_index_B])
+                        curr_index_B -= 1
+                    else:
+                        expression0.reverse()
+                        break
                     
-            if dividend % divisor != remainder:
-                evaluated = True
-            else:
-                evaluated = False
+                # Loop forwards
+                curr_index_F = index
+                while True:
+                    if compiler.source_content[curr_index_F] != "\n":
+                        expression1.append(compiler.source_content[curr_index_F])
+                        curr_index_F += 1
+                    else:
+                        break
 
-            compiler.source_content = re.sub(expressionStr,str(evaluated),compiler.source_content,flags=re.IGNORECASE)
+                # Seperating expression into componenets
+                expression = expression0
+                expression.pop()
+                expression.extend(expression1)
+                expressionStr = "".join(expression)
+
+                dividend = None
+                divisor = None
+                remainder = None
+                curr = ""
+
+                for i in expressionStr:
+                    if i.isdigit():
+                        curr += i
+                    else:
+                        try:
+                            if dividend == None:
+                                dividend = int(curr)
+                            elif divisor == None:
+                                divisor = int(curr)
+                            elif remainder == None:
+                                remainder = int(curr)
+                        except:
+                            pass
+                        curr = ""
+
+                # Evaluating the expression using traditional python syntax
+                if dividend % divisor != remainder:
+                    evaluated = True
+                else:
+                    evaluated = False
+                
+                # Writing to the save file
+                if evaluated != None:
+                    compiler.source_content = re.sub(expressionStr,str(evaluated),compiler.source_content,flags=re.IGNORECASE)
+
+
+        except:
+            raise SyntaxError (f"Check syntax for  '{expressionStr}' in {method.readSettings('fileName')} at line {lineCount}")
 
 
 
