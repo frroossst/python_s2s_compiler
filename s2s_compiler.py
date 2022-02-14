@@ -1,6 +1,7 @@
 from doctest import BLANKLINE_MARKER
 from itertools import count
 from math import remainder
+from multiprocessing.sharedctypes import Value
 from ntpath import join
 import pickle
 import random
@@ -18,24 +19,30 @@ class method():
     @classmethod
     def readSettings(self,type) -> str:
         # Reading file name from settings.json
-        with open("settings.json","r") as fobj:
-            settings = json.load(fobj)
-            fobj.close() 
+        try:
+            with open("settings.json","r") as fobj:
+                settings = json.load(fobj)
+                fobj.close() 
 
-        if type == "fileName":
-            fileName = settings["fileName"]
-            if fileName == "":
-                fileName = settings["filePath"]        
-            return fileName
-        elif type == "changeSource":
-            return settings["changeSource"]
+            if type == "fileName":
+                fileName = settings["fileName"]
+                if fileName == "":
+                    fileName = settings["filePath"]        
+                return fileName
+            elif type == "changeSource":
+                return settings["changeSource"]
+        except:
+            raise FileNotFoundError("settings.json not found")
 
     @classmethod
     def readSource(self) -> str:
         # Reading soruce file contents
-        with open(method.readSettings("fileName"),"r") as fobj:
-            content = fobj.read()
-            return content
+        try:
+            with open(method.readSettings("fileName"),"r") as fobj:
+                content = fobj.read()
+                return content
+        except:
+            raise FileNotFoundError ("could not locate source file")
 
     @classmethod
     def saveComp(self) -> None:
@@ -61,7 +68,7 @@ class method():
     @classmethod 
     def cleanup(self):
         import os
-        filesCreated = ["barrelRoll.py"]
+        filesCreated = ["barrelRoll.py","vowelCount.json"]
         try: 
             for i in filesCreated:
                 os.remove(i)
