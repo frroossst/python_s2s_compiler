@@ -299,15 +299,9 @@ class functional():
         """ !% => not remainder
         Syntax => "a !% b,c;" translates to a % b == c
         """
-        # TODO : Work on translation into python statement and storing the output to appropriate varibale on the comp_ file
         # TODO : Make it also work with variable names and not only numbers
         # ! Only works with numbers as of now, as it is only a partial evaluator and not a full interpreter
-        # ! Only works for the first instance of the expression
-        # ; added to make end of statement easier to interpret
-        # Figure out a way to get the number before !% symbol
-            # Idea 1 => find index of symbol, check a space or two before to get a number doing that until the number ends
-            # Idea 2 => make !% into a function => !%(a,b,c=0)
-            # Idea 2 => Use ; to figure out the end of the expression
+        
         loopTotal = compiler.source_content.count("!%")
         loopCount = 0
         try:
@@ -334,7 +328,8 @@ class functional():
                 # Loop backwards
                 curr_index_B = index 
                 while True:
-                    if compiler.source_content[curr_index_B] != "\n":
+                    startLine = ["\n", "="]
+                    if compiler.source_content[curr_index_B] not in startLine:
                         expression0.append(compiler.source_content[curr_index_B])
                         curr_index_B -= 1
                     else:
@@ -389,7 +384,6 @@ class functional():
 
         except:
             raise SyntaxError (f"Check syntax for  '{expressionStr}' in {method.readSettings('fileName')} at line {lineCount}")
-
 
 
 
