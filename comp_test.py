@@ -27,9 +27,16 @@ a = -0
 "behavior"
 b = "airplane"
 
+li = [1,2,3,4,5,6,7,8,9,10]
+for i in li:
+    D = i
+    d = 2
+    r = 1
+
+print(D)
 
 True
 
-a = True
-
+a =True
+"""
 print()

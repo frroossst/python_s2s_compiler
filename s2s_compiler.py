@@ -1,13 +1,6 @@
-from doctest import BLANKLINE_MARKER
-from itertools import count
-from math import remainder
-from multiprocessing.sharedctypes import Value
-from ntpath import join
-import pickle
 import random
 import json
 import re
-from symtable import Symbol
 
 
 
@@ -307,7 +300,7 @@ class functional():
         Syntax => "a !% b,c;" translates to a % b == c
         """
         # TODO : Make it also work with variable names and not only numbers
-        # ! Only works with numbers as of now, as it is only a partial evaluator and not a full interpreter
+        # ! Only works with numbers as of now, as it is only a partial evaluator and not a full interpreter.
         
         loopTotal = compiler.source_content.count("!%")
         loopCount = 0
@@ -404,8 +397,21 @@ class functional():
                 hash_vowels[i] += 1
 
         with open("vowelCount.json","w") as fobj:
-            json.dump(hash_vowels,fobj)
+            json.dump(hash_vowels,fobj,indent=6)
             fobj.close()
+        
+    def bruteSort(self) -> None:
+        # Sorts a mixed string and numerical list
+        # List needs to be explicitly defined or passed as arguments
+        # Syntax => 
+        # li = [1,2,"a","b",3,"c"]
+        # li.bruteSort()
+        # Output => ["a","b","c",1,2,3] (alpha=True)
+        # Output => [1,2,3,"a","b","c"] (alpha=False)
+
+        # TODO : For partial evaluation add comments and execute and save outout and then remove comments
+
+        pass         
 
 
 
