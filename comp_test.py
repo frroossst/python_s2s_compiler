@@ -37,6 +37,10 @@ print(D)
 
 True
 
-a =True
-"""
+a = True
+
+False
+
+b = False
+
 print()
