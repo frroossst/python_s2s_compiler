@@ -18,6 +18,8 @@ print("tails")
 
 print("5")
 
+from fcntl import F_SEAL_SEAL
+from multiprocessing.context import _force_start_method
 import barrelRoll 
 barrelRoll.barrelRoll()
 
@@ -42,5 +44,22 @@ a = True
 False
 
 b = False
+
+a = True
+b = False
+
+
+if a:
+    print("a")
+if b:
+    print("b")
+
+elif a and b:
+    print("a and b")
+elif a or b:
+    print("a or b")
+else:
+    print("else")
+
 
 print()

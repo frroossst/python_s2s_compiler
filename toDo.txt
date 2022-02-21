@@ -6,10 +6,6 @@
 
      -0 => "did you pass high school math?"
 
-     !% => not divisible operator
-        rather than x % y != 0 you do:
-            x !% y 
-     =% => is remainder
 
     number_magic => converts spelled out number to integer numbers
 
@@ -27,6 +23,8 @@
     What it does is forced every if statement to be executed. 
     
     System of linear equations solver
+
+    Make count vowel a method for specific strings
 
 2. Figure out a way to add interactive easter eggs
 

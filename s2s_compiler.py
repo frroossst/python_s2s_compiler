@@ -1,3 +1,4 @@
+from errno import ENETDOWN
 import random
 import json
 import re
@@ -114,7 +115,8 @@ class compiler():
         F = functional()
         F.not_remainder() 
         F.equal_remainder()
-        F.count_vowels()
+        F.forcedELIF()
+        # F.count_vowels()
 
         method.saveComp()
 
@@ -478,6 +480,60 @@ class functional():
         except:
             raise SyntaxError (f"Check syntax for  '{expressionStr}' in {method.readSettings('fileName')} at line {lineCount}")
 
+    def forcedELIF(self) -> None:
+
+        startFlag = "FORCED{"
+        endFlag = "}"
+
+        try:
+            while True:
+                if startFlag not in compiler.source_content:
+                    break
+                
+                for i in range(0,len(compiler.source_content)):
+                    curr_pointer = compiler.source_content[i] + compiler.source_content[i+1] + compiler.source_content[i+2] + compiler.source_content[i+3] + compiler.source_content[i+4] + compiler.source_content[i+5] + compiler.source_content[i+6]
+                    if curr_pointer == startFlag:
+                        index = i
+                        break
+                
+                count = index
+                substring = []
+                while True:
+                    
+                    if compiler.source_content[count] == endFlag:
+                        substring.append(compiler.source_content[count])
+                        endex = count
+                        break
+
+                    substring.append(compiler.source_content[count])
+                    count += 1
+
+
+                substring = "".join(substring)
+                modstring = substring
+                # Replacing elif with if statements
+                pattern = "elif"
+                repl = "if"
+                modstring = re.sub(pattern,repl,modstring)
+                # Removing non syntax elements
+                pattern = startFlag
+                repl = ""
+                modstring = re.sub(pattern,repl,modstring)
+                pattern = endFlag
+                repl = ""
+                modstring= re.sub(pattern,repl,modstring)
+
+                # Writing to source_content
+                compiler.source_content = compiler.source_content[:index] + modstring + compiler.source_content[endex+1:]
+                #dgdo
+
+
+
+        except Exception as e:
+            print(e)
+
+
+
 
     def count_vowels(self) -> None:
 
@@ -500,10 +556,20 @@ class functional():
         # li.bruteSort()
         # Output => ["a","b","c",1,2,3] (alpha=True)
         # Output => [1,2,3,"a","b","c"] (alpha=False)
-
+        
         # TODO : For partial evaluation add comments and execute and save outout and then remove comments
-
         pass         
+
+    
+
+
+
+
+
+
+
+
+
 
 
 
