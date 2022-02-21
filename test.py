@@ -53,13 +53,14 @@ if a:
     print("a")
 elif b:
     print("b")
-}
 elif a and b:
     print("a and b")
+}
 elif a or b:
     print("a or b")
 else:
     print("else")
+
 
 
 print()

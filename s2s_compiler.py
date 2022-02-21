@@ -485,6 +485,11 @@ class functional():
         startFlag = "FORCED{"
         endFlag = "}"
 
+        s_count = compiler.source_content.count("D{")
+        e_count = compiler.source_content.count("}")
+        if s_count != e_count:
+            raise SyntaxError ("unmatched '{' and '}'")
+
         try:
             while True:
                 if startFlag not in compiler.source_content:
