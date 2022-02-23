@@ -116,7 +116,7 @@ class compiler():
         F.not_remainder() 
         F.equal_remainder()
         F.forcedELIF()
-        # F.count_vowels()
+        F.count_vowels()
 
         method.saveComp()
 
@@ -537,21 +537,61 @@ class functional():
         except Exception as e:
             print(e)
 
-
-
-
     def count_vowels(self) -> None:
 
         vowels = ["a","e","i","o","u"]
         hash_vowels = {"a" : 0, "e" : 0, "i" : 0, "o" : 0, "u" :0}
 
-        for i in compiler.source_content:
-            if i in vowels:
-                hash_vowels[i] += 1
+        symbol = ".countVowels"
 
-        with open("vowelCount.json","w") as fobj:
-            json.dump(hash_vowels,fobj,indent=6)
-            fobj.close()
+        try:
+            while True:
+                if symbol not in compiler.source_content:
+                    break
+
+                for i in range(0,len(compiler.source_content)):
+                    if i+1 > len(compiler.source_content):
+                        break
+                    curr_pointer = (compiler.source_content[i] + compiler.source_content[i+1] + compiler.source_content[i+2] + 
+                    compiler.source_content[i+3] + compiler.source_content[i+4] + compiler.source_content[i+5] + compiler.source_content[i+6] +  
+                    compiler.source_content[i+7] + compiler.source_content[i+8] + compiler.source_content[i+9] + compiler.source_content[i+10] +
+                    compiler.source_content[i+11])
+                    print(curr_pointer)
+                    if curr_pointer == symbol:
+                        index = i
+
+                        flagCount = 0
+                        substring = []
+                        while True:
+                            if flagCount == 2:
+                                break
+                            if compiler.source_content[index] == "\"" or compiler.source_content[index] == "\'":
+                                substring.append(compiler.source_content[index])
+                                flagCount += 1
+                            index += 1
+
+                        text = "".join(substring)
+                        print(text)
+
+                        for i in text:
+                            if i in vowels:
+                                hash_vowels[i] += 1
+                        break
+
+                         
+
+
+
+
+
+
+        except Exception as e:
+            print(e)
+
+
+
+
+   
         
     def bruteSort(self) -> None:
         # Sorts a mixed string and numerical list
@@ -566,6 +606,9 @@ class functional():
         pass         
 
     
+
+    def system_of_linear_equation(self) -> None:
+        pass
 
 
 

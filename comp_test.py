@@ -55,11 +55,12 @@ if b:
     print("b")
 if a and b:
     print("a and b")
+
 elif a or b:
     print("a or b")
 else:
     print("else")
 
-
+"abcdefghijklmnopqrstuvwxyz".countVowels
 
 print()

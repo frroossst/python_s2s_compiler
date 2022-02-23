@@ -10,17 +10,6 @@
     number_magic => converts spelled out number to integer numbers
 
     bruteSort => sort a list with numbers and strings
-
-    forced elif ladders
-    FORCED
-    if:
-    elif: => if:
-    elif: => if:
-    elif: => if:
-    elif: => if:
-    else: => if:
-    \FROCED
-    What it does is forced every if statement to be executed. 
     
     System of linear equations solver
 
