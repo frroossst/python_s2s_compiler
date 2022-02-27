@@ -74,5 +74,8 @@ elif a and b:
 else:
     print()
 
+NUMBER{"one hundred"}
 
 print()
+
+((({{{[[[[]]]]}}})))

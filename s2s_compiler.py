@@ -80,6 +80,18 @@ class method():
         
         return returnStr
 
+    @classmethod
+    def bracketMatch(self) -> None:
+        content = method.readSource()
+        openPara = content.count("(")
+        closedPara = content.count(")")
+        openCurl = content.count("{")
+        closedCurl = content.count("}")
+        openSquare = content.count("[")
+        closedSquare = content.count("]")
+
+        if (closedPara != openPara) or (openCurl != closedCurl) or (openSquare != closedSquare):
+            raise SyntaxError ("Unmatching brackets")
 
 
 
@@ -91,6 +103,7 @@ class compiler():
     def __init__(self) -> None:
         method.cleanup()
         compiler.source_content = method.readSource()
+        method.bracketMatch()
 
     def main(self):
   
@@ -117,6 +130,7 @@ class compiler():
         F.equal_remainder()
         F.forcedELIF()
         F.count_vowels()
+        F.number_magic()
 
         method.saveComp()
 
@@ -484,12 +498,7 @@ class functional():
 
         startFlag = "FORCED{"
         endFlag = "}"
-
-        s_count = compiler.source_content.count("D{")
-        e_count = compiler.source_content.count("}")
-        if s_count != e_count:
-            raise SyntaxError ("unmatched '{' and '}'")
-
+        
         try:
             while True:
                 if startFlag not in compiler.source_content:
@@ -530,9 +539,6 @@ class functional():
 
                 # Writing to source_content
                 compiler.source_content = compiler.source_content[:index] + modstring + compiler.source_content[endex+1:]
-                #dgdo
-
-
 
         except Exception as e:
             print(e)
@@ -614,6 +620,38 @@ class functional():
         "nineteen" : 19, "twenty" : 20, "thirty" : 30, "fourty" : 40, "fifty" : 50, "sixty" : 60, "seventy" : 70, "eighty" : 80, "ninety" : 90,
         "hundred" : 100, "thousand" : 1000, "million" : 100000000, "billion" : 100000000000, "trillion" : 100000000000000}
 
+        symbol = "NUMBER{"
+        endFlag = "}"
+
+        try:
+            while True:
+                if symbol not in compiler.source_content:
+                    break
+                
+                for i in range(0,len(compiler.source_content)):
+                    curr_pointer = (compiler.source_content[i] + compiler.source_content[i+1] + compiler.source_content[i+2] + 
+                    compiler.source_content[i+3] + compiler.source_content[i+4] + compiler.source_content[i+5] + compiler.source_content[i+6])
+                    if curr_pointer == symbol:
+                        index = i
+                        break
+                
+                expression = []
+                while True:
+                    if compiler.source_content[index] != endFlag:
+                        expression.append(compiler.source_content[index])
+                        index += 1
+                    else:
+                        break
+
+                expressionStr = "".join(expression)
+                expressionStr = expressionStr[7:]
+                print(expressionStr) 
+
+                # Decoding the expression
+
+
+        except:
+            pass
 
 
 

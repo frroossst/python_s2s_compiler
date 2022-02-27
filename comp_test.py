@@ -37,42 +37,45 @@ for i in li:
 
 print(D)
 
-True
+100 !% 2, 1;
+
+a = 100 !% 2, 1;
+
+100 =% 2, 0;
+
+b = 100 =% 2, 0;
 
 a = True
-
-False
-
 b = False
 
-a = True
-b = False
-
-
+FORCED{
 if a:
     print("a")
-if b:
+elif b:
     print("b")
-if a and b:
+elif a and b:
     print("a and b")
-
+}
 elif a or b:
     print("a or b")
 else:
     print("else")
 
 
-
+FORCED{
 if a:
     print("a")
-if b:
+elif b:
     print("b")
-if a or b:
+elif a or b:
     print("a or b")
-if a and b:
-    print("a and b")
+elif a and b:
+    print("a and b")}
 else:
     print()
 
+NUMBER{"one hundred"}
 
 print()
+
+((({{{[[[[]]]]}}})))
