@@ -1,3 +1,4 @@
+import enum
 from errno import ENETDOWN
 import random
 import json
@@ -619,6 +620,7 @@ class functional():
         "eleven" : 11, "twelve" : 12, "thirteen" : 13, "fourteen" : 14, "fifteen" : 15, "sixteen" : 16, "seventeen" : 17, "eighteen" : 18,
         "nineteen" : 19, "twenty" : 20, "thirty" : 30, "fourty" : 40, "fifty" : 50, "sixty" : 60, "seventy" : 70, "eighty" : 80, "ninety" : 90,
         "hundred" : 100, "thousand" : 1000, "million" : 100000000, "billion" : 100000000000, "trillion" : 100000000000000}
+        keywords = ["hundred","thousand","million","billion","trillion"]
 
         symbol = "NUMBER{"
         endFlag = "}"
@@ -644,14 +646,57 @@ class functional():
                         break
 
                 expressionStr = "".join(expression)
-                expressionStr = expressionStr[7:]
-                print(expressionStr) 
+                expressionStr = expressionStr[8:-1] + " "
 
                 # Decoding the expression
+                """
+                Basic Idea 
+                Every expression has a keyword and number word
+                thousand, hundred => keyword ; fourty, five => number word
+                Keywords are multipliers where as number words are additive
+                Four thousand nine hundred sixty nine
+                (4 x 1000) + (9 x 100) + 60 + 9
+                """
+                phrase = []
+                accum = ""
+
+                for i in expressionStr:
+                    if i == " ":
+                        phrase.append(accum)
+                        accum = ""
+                    else:
+                        accum += i
+
+                key_mul = 0
+                num_mul = 0
+
+                phraseIter = phrase.copy()
+
+                # Evaluating keywords multipliers
+                for indx, element in enumerate(phraseIter):
+                    if element in keywords:
+                        key_mul += (int(numDict[phraseIter[indx - 1]]) * int(numDict[element]))
+                        phrase.pop(indx)
+                        phrase.pop(indx - 1)
+
+                print(key_mul)
+
+                # Evaluating numericals
+                for indx, element in enumerate(phrase):
+                    num_mul += int(numDict[element])
+
+                print(num_mul)
+
+                evaluate = key_mul + num_mul
+
+                pattern = "NUMBER" + "{" + '"' + expressionStr[:-1] + '"' + "}"
+                repl = str(evaluate)
+                compiler.source_content = re.sub(pattern,repl,compiler.source_content)
 
 
-        except:
-            pass
+
+        except Exception as e:
+            print(e)
 
 
 

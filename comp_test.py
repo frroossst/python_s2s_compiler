@@ -18,8 +18,6 @@ print("tails")
 
 print("5")
 
-from fcntl import F_SEAL_SEAL
-from multiprocessing.context import _force_start_method
 import barrelRoll 
 barrelRoll.barrelRoll()
 
@@ -37,45 +35,43 @@ for i in li:
 
 print(D)
 
-100 !% 2, 1;
+True
 
-a = 100 !% 2, 1;
+a = True
 
-100 =% 2, 0;
+False
 
-b = 100 =% 2, 0;
+b = False
 
 a = True
 b = False
 
-FORCED{
+
 if a:
     print("a")
-elif b:
+if b:
     print("b")
-elif a and b:
+if a and b:
     print("a and b")
-}
+
 elif a or b:
     print("a or b")
 else:
     print("else")
 
 
-FORCED{
+
 if a:
     print("a")
-elif b:
+if b:
     print("b")
-elif a or b:
+if a or b:
     print("a or b")
-elif a and b:
-    print("a and b")}
+if a and b:
+    print("a and b")
 else:
     print()
 
-NUMBER{"one hundred"}
+460
 
 print()
-
-((({{{[[[[]]]]}}})))

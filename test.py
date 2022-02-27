@@ -18,8 +18,6 @@ print("tails")
 
 print("5")
 
-from fcntl import F_SEAL_SEAL
-from multiprocessing.context import _force_start_method
 import barrelRoll 
 barrelRoll.barrelRoll()
 
@@ -74,8 +72,6 @@ elif a and b:
 else:
     print()
 
-NUMBER{"one hundred"}
+NUMBER{"four hundred sixty"}
 
 print()
-
-((({{{[[[[]]]]}}})))
