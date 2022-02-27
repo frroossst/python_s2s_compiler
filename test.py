@@ -61,6 +61,18 @@ elif a or b:
 else:
     print("else")
 
-"abcdefghijklmnopqrstuvwxyz".countVowels
+
+FORCED{
+if a:
+    print("a")
+elif b:
+    print("b")
+elif a or b:
+    print("a or b")
+elif a and b:
+    print("a and b")}
+else:
+    print()
+
 
 print()

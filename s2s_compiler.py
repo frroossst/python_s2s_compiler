@@ -550,13 +550,13 @@ class functional():
                     break
 
                 for i in range(0,len(compiler.source_content)):
-                    if i+1 > len(compiler.source_content):
+                    if i + 12 > len(compiler.source_content):
                         break
                     curr_pointer = (compiler.source_content[i] + compiler.source_content[i+1] + compiler.source_content[i+2] + 
                     compiler.source_content[i+3] + compiler.source_content[i+4] + compiler.source_content[i+5] + compiler.source_content[i+6] +  
                     compiler.source_content[i+7] + compiler.source_content[i+8] + compiler.source_content[i+9] + compiler.source_content[i+10] +
                     compiler.source_content[i+11])
-                    print(curr_pointer)
+                    
                     if curr_pointer == symbol:
                         index = i
 
@@ -565,10 +565,19 @@ class functional():
                         while True:
                             if flagCount == 2:
                                 break
-                            if compiler.source_content[index] == "\"" or compiler.source_content[index] == "\'":
+                            
+                            sq = False
+                            dq = False
+
+                            if compiler.source_content[index] == "\'":
+                                sq = True
+                            if compiler.source_content[index] == "\"":
+                                dq = True
+
+                            if (compiler.source_content[index] == "\'" and sq) or (compiler.source_content[index] == "\"" and dq):
                                 substring.append(compiler.source_content[index])
                                 flagCount += 1
-                            index += 1
+                            index -= 1
 
                         text = "".join(substring)
                         print(text)
@@ -577,21 +586,10 @@ class functional():
                             if i in vowels:
                                 hash_vowels[i] += 1
                         break
-
-                         
-
-
-
-
-
+                break
 
         except Exception as e:
             print(e)
-
-
-
-
-   
         
     def bruteSort(self) -> None:
         # Sorts a mixed string and numerical list
@@ -603,14 +601,18 @@ class functional():
         # Output => [1,2,3,"a","b","c"] (alpha=False)
         
         # TODO : For partial evaluation add comments and execute and save outout and then remove comments
-        pass         
+        symbol = "bruteSort("
 
     
 
     def system_of_linear_equation(self) -> None:
         pass
 
-
+    def number_magic(self) -> None:
+        numDict = {"one" : 1, "two" : 2, "three" : 3, "four" : 4, "five" : 5, "six" : 6, "seven" : 7, "eight" : 8, "nine" : 9, "ten" : 10,
+        "eleven" : 11, "twelve" : 12, "thirteen" : 13, "fourteen" : 14, "fifteen" : 15, "sixteen" : 16, "seventeen" : 17, "eighteen" : 18,
+        "nineteen" : 19, "twenty" : 20, "thirty" : 30, "fourty" : 40, "fifty" : 50, "sixty" : 60, "seventy" : 70, "eighty" : 80, "ninety" : 90,
+        "hundred" : 100, "thousand" : 1000, "million" : 100000000, "billion" : 100000000000, "trillion" : 100000000000000}
 
 
 

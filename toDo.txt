@@ -6,7 +6,6 @@
 
      -0 => "did you pass high school math?"
 
-
     number_magic => converts spelled out number to integer numbers
 
     bruteSort => sort a list with numbers and strings
@@ -14,6 +13,13 @@
     System of linear equations solver
 
     Make count vowel a method for specific strings
+
+    alternative to del for deleting keys in dictionary
+
+    short hand strings 
+        w/ => with
+        w/o => without
+        ^n => tion
 
 2. Figure out a way to add interactive easter eggs
 
