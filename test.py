@@ -72,6 +72,8 @@ elif a and b:
 else:
     print()
 
-NUMBER{"four hundred sixty"}
+NUMBER{"ninety thousand five hundred and two"}
+
+NUMBER{"one million four thousand and six"}
 
 print()

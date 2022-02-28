@@ -616,7 +616,7 @@ class functional():
         pass
 
     def number_magic(self) -> None:
-        numDict = {"one" : 1, "two" : 2, "three" : 3, "four" : 4, "five" : 5, "six" : 6, "seven" : 7, "eight" : 8, "nine" : 9, "ten" : 10,
+        numDict = {"zero" : 0, "one" : 1, "two" : 2, "three" : 3, "four" : 4, "five" : 5, "six" : 6, "seven" : 7, "eight" : 8, "nine" : 9, "ten" : 10,
         "eleven" : 11, "twelve" : 12, "thirteen" : 13, "fourteen" : 14, "fifteen" : 15, "sixteen" : 16, "seventeen" : 17, "eighteen" : 18,
         "nineteen" : 19, "twenty" : 20, "thirty" : 30, "fourty" : 40, "fifty" : 50, "sixty" : 60, "seventy" : 70, "eighty" : 80, "ninety" : 90,
         "hundred" : 100, "thousand" : 1000, "million" : 100000000, "billion" : 100000000000, "trillion" : 100000000000000}
@@ -647,6 +647,9 @@ class functional():
 
                 expressionStr = "".join(expression)
                 expressionStr = expressionStr[8:-1] + " "
+                # Sanitising input
+                expressionStr = expressionStr.lower()
+                expressionStr = expressionStr.strip()
 
                 # Decoding the expression
                 """
@@ -667,28 +670,45 @@ class functional():
                     else:
                         accum += i
 
+                # removing "and"
+                try:
+                    phrase.remove("and")
+                except:
+                    pass
+
                 key_mul = 0
                 num_mul = 0
 
                 phraseIter = phrase.copy()
 
                 # Evaluating keywords multipliers
-                for indx, element in enumerate(phraseIter):
-                    if element in keywords:
-                        key_mul += (int(numDict[phraseIter[indx - 1]]) * int(numDict[element]))
-                        phrase.pop(indx)
-                        phrase.pop(indx - 1)
+                flag  =True
+                while flag:
+                    phraseIter = phrase.copy()
+                    
+                    for indx, element in enumerate(phraseIter):
+                        if element in keywords:
+                            key_mul += (int(numDict[phraseIter[indx - 1]]) * int(numDict[element]))
+                            phrase.pop(indx)
+                            phrase.pop(indx - 1)
+                            break
+                    if len(phrase) <2:
+                        flag = False
+
 
                 print(key_mul)
 
                 # Evaluating numericals
-                for indx, element in enumerate(phrase):
-                    num_mul += int(numDict[element])
+                if phrase != []:
+                    for indx, element in enumerate(phrase):
+                        num_mul += int(numDict[element])
 
                 print(num_mul)
 
                 evaluate = key_mul + num_mul
+                print(evaluate)
 
+                # ! Possible bug : if the input was mixed case or had spaces then this replacement would not work
                 pattern = "NUMBER" + "{" + '"' + expressionStr[:-1] + '"' + "}"
                 repl = str(evaluate)
                 compiler.source_content = re.sub(pattern,repl,compiler.source_content)
