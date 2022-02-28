@@ -620,6 +620,7 @@ class functional():
         "eleven" : 11, "twelve" : 12, "thirteen" : 13, "fourteen" : 14, "fifteen" : 15, "sixteen" : 16, "seventeen" : 17, "eighteen" : 18,
         "nineteen" : 19, "twenty" : 20, "thirty" : 30, "fourty" : 40, "fifty" : 50, "sixty" : 60, "seventy" : 70, "eighty" : 80, "ninety" : 90,
         "hundred" : 100, "thousand" : 1000, "million" : 100000000, "billion" : 100000000000, "trillion" : 100000000000000}
+
         keywords = ["hundred","thousand","million","billion","trillion"]
 
         symbol = "NUMBER{"
@@ -647,6 +648,10 @@ class functional():
 
                 expressionStr = "".join(expression)
                 expressionStr = expressionStr[8:-1] + " "
+
+                old_expressionStr = expressionStr + " "
+                old_expressionStr = old_expressionStr.strip() # Ensuring an unique id for duplicated string
+
                 # Sanitising input
                 expressionStr = expressionStr.lower()
                 expressionStr = expressionStr.strip()
@@ -709,7 +714,7 @@ class functional():
                 print(evaluate)
 
                 # ! Possible bug : if the input was mixed case or had spaces then this replacement would not work
-                pattern = "NUMBER" + "{" + '"' + expressionStr[:-1] + '"' + "}"
+                pattern = "NUMBER" + "{" + '"' + old_expressionStr + '"' + "}"
                 repl = str(evaluate)
                 compiler.source_content = re.sub(pattern,repl,compiler.source_content)
 
