@@ -652,9 +652,6 @@ class functional():
                 old_expressionStr = expressionStr + " "
                 old_expressionStr = old_expressionStr.strip() # Ensuring an unique id for duplicated string
 
-                # Sanitising input
-                expressionStr = expressionStr.lower()
-                expressionStr = expressionStr.strip()
 
                 # Decoding the expression
                 """
@@ -680,32 +677,39 @@ class functional():
                     phrase.remove("and")
                 except:
                     pass
+                
+                # Sanitising input
+                phrase_sani = []
+                for i in phrase:
+                    i = i.lower()
+                    i = i.strip()
+                    phrase_sani.append(i)
 
                 key_mul = 0
                 num_mul = 0
 
-                phraseIter = phrase.copy()
+                phraseIter = phrase_sani.copy()
 
                 # Evaluating keywords multipliers
+                # ! Instean of hardcoding len(phrase_sani) < 2; use the number of non keywords in the phrase
                 flag  =True
                 while flag:
-                    phraseIter = phrase.copy()
+                    phraseIter = phrase_sani.copy()
                     
                     for indx, element in enumerate(phraseIter):
                         if element in keywords:
                             key_mul += (int(numDict[phraseIter[indx - 1]]) * int(numDict[element]))
-                            phrase.pop(indx)
-                            phrase.pop(indx - 1)
+                            phrase_sani.pop(indx)
+                            phrase_sani.pop(indx - 1)
                             break
-                    if len(phrase) <2:
+                    if len(phrase_sani) <2:
                         flag = False
-
 
                 print(key_mul)
 
                 # Evaluating numericals
-                if phrase != []:
-                    for indx, element in enumerate(phrase):
+                if phrase_sani != []:
+                    for indx, element in enumerate(phrase_sani):
                         num_mul += int(numDict[element])
 
                 print(num_mul)

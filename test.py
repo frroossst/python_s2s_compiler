@@ -76,4 +76,6 @@ NUMBER{"ninety thousand five hundred and two"}
 
 NUMBER{"one million four thousand and six"}
 
+NUMBER{"one trillion and SIXTY nine"}
+
 print()

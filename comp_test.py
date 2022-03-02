@@ -35,45 +35,47 @@ for i in li:
 
 print(D)
 
-True
+100 !% 2, 1;
+
+a = 100 !% 2, 1;
+
+100 =% 2, 0;
+
+b = 100 =% 2, 0;
 
 a = True
-
-False
-
 b = False
 
-a = True
-b = False
-
-
+FORCED{
 if a:
     print("a")
-if b:
+elif b:
     print("b")
-if a and b:
+elif a and b:
     print("a and b")
-
+}
 elif a or b:
     print("a or b")
 else:
     print("else")
 
 
-
+FORCED{
 if a:
     print("a")
-if b:
+elif b:
     print("b")
-if a or b:
+elif a or b:
     print("a or b")
-if a and b:
-    print("a and b")
+elif a and b:
+    print("a and b")}
 else:
     print()
 
-90500
+NUMBER{"ninety thousand five hundred and two"}
 
-100004000
+NUMBER{"one million four thousand and six"}
+
+NUMBER{"one trillion and SIXTY nine"}
 
 print()
