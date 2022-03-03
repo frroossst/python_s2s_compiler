@@ -691,7 +691,6 @@ class functional():
                 phraseIter = phrase_sani.copy()
 
                 # Evaluating keywords multipliers
-                # ! Instean of hardcoding len(phrase_sani) < 2; use the number of non keywords in the phrase
                 flag  =True
                 while flag:
                     phraseIter = phrase_sani.copy()
@@ -702,20 +701,25 @@ class functional():
                             phrase_sani.pop(indx)
                             phrase_sani.pop(indx - 1)
                             break
-                    if len(phrase_sani) <2:
-                        flag = False
+                    
+                    for i in keywords:
+                        if i not in phrase_sani:
+                            flag = False
 
-                print(key_mul)
+                    # if len(phrase_sani) <2:
+                    #     flag = False
+
+                # print(key_mul)
 
                 # Evaluating numericals
                 if phrase_sani != []:
                     for indx, element in enumerate(phrase_sani):
                         num_mul += int(numDict[element])
 
-                print(num_mul)
+                # print(num_mul)
 
                 evaluate = key_mul + num_mul
-                print(evaluate)
+                # print(evaluate)
 
                 # ! Possible bug : if the input was mixed case or had spaces then this replacement would not work
                 pattern = "NUMBER" + "{" + '"' + old_expressionStr + '"' + "}"
