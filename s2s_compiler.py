@@ -1,5 +1,3 @@
-import enum
-from errno import ENETDOWN
 import random
 import json
 import re
@@ -132,6 +130,7 @@ class compiler():
         F.forcedELIF()
         F.count_vowels()
         F.number_magic()
+        F.short_hand()
 
         method.saveComp()
 
@@ -721,16 +720,20 @@ class functional():
                 evaluate = key_mul + num_mul
                 # print(evaluate)
 
-                # ! Possible bug : if the input was mixed case or had spaces then this replacement would not work
                 pattern = "NUMBER" + "{" + '"' + old_expressionStr + '"' + "}"
                 repl = str(evaluate)
                 compiler.source_content = re.sub(pattern,repl,compiler.source_content)
 
-
-
         except Exception as e:
             print(e)
 
+    def short_hand(self) -> None:
+        shortHand = ["w/","w/o","^n"]
+        longHand = ["with","without","tion"]
+
+        for sh, lo in zip(shortHand,longHand):
+            compiler.source_content = re.sub(sh,lo,compiler.source_content,flags=re.IGNORECASE)
+        
 
 
 

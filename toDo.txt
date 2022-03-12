@@ -4,10 +4,6 @@
 
     1b Functional
 
-     -0 => "did you pass high school math?"
-
-    number_magic => converts spelled out number to integer numbers
-
     bruteSort => sort a list with numbers and strings
     
     System of linear equations solver
@@ -21,7 +17,14 @@
         w/o => without
         ^n => tion
 
-2. Figure out a way to add interactive easter eggs
+    get rid of all bugs => DEBUG = True
+	deleted entire file cause the fastest way to get rid of bugs is to delete evrything
+
+    multiple function definition checker
+
+    Matrix multiplication
+
+    add a json file to allow user to select certain functions to run for the compiler
 
 3. Impliment AST
 https://docs.python.org/3/library/ast.html
