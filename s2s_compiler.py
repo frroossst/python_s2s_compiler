@@ -728,11 +728,11 @@ class functional():
             print(e)
 
     def short_hand(self) -> None:
-        shortHand = ["w/","w/o","^n"]
-        longHand = ["with","without","tion"]
+        shortHand = ["w/o","w/","/n"]
+        longHand = ["without","with","tion"]
 
         for sh, lo in zip(shortHand,longHand):
-            compiler.source_content = re.sub(sh,lo,compiler.source_content,flags=re.IGNORECASE)
+            compiler.source_content = re.sub(sh,lo,compiler.source_content)
         
 
 

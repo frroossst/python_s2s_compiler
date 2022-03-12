@@ -78,6 +78,6 @@ NUMBER{"one million four thousand and six"}
 
 NUMBER{"one trillion and SIXTY nine"}
 
-"Using it w/ apples and using it w/o apples; comple^n"
+"Using it w/ apples and using it w/o apples; comple/n"
 
 print()
